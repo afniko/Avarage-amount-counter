@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  sales-generator:
+    build: sales-generator
+    image: sales-generator
+    container_name: sales-generator
+    ports:
+      - 8781:8781
+    depends_on:
+      - avarage-amount-counter
+    healthcheck:
+      test: "exit 0"
+
+  avarage-amount-counter:
+    build: avarage-amount-counter
+    image: avarage-amount-counter
+    container_name: avarage-amount-counter
+    ports:
+      - 8780:8780
+    healthcheck:
+      test: "exit 0"

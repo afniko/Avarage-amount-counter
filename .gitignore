@@ -1,0 +1,9 @@
+#IDEA folders
+/.idea/
+
+#Gradle
+.gradle/
+build/
+
+#log
+**logs/
