@@ -31,7 +31,7 @@ public class DataSalesServiceImpl implements DataSalesService {
     }
 
     @Override
-    public void save(SalesAmountInfo salesAmountInfo) {
+    public synchronized void save(SalesAmountInfo salesAmountInfo) {
         LOG.debug("In save - set time and save info");
         setTimeOfSale(salesAmountInfo);
         final boolean resultOfStore = dataRepository.save(salesAmountInfo);
@@ -40,13 +40,8 @@ public class DataSalesServiceImpl implements DataSalesService {
         }
     }
 
-    public List<SalesAmountInfo> findAll() {
-        LOG.debug("In findAll - find all records");
-        return dataRepository.findAll();
-    }
-
     @Override
-    public void removeOlderRecords() {
+    public synchronized void removeOlderRecords() {
         long second = 60L;
         final LocalDateTime olderTime = timeService.now().minusSeconds(second);
         final List<SalesAmountInfo> allRecords = dataRepository.findAll();
@@ -62,7 +57,7 @@ public class DataSalesServiceImpl implements DataSalesService {
     @Override
     public StatisticInfo getStatistic() {
         LOG.debug("In getStatistic - retrieve statistic info");
-        final List<SalesAmountInfo> allRecords = dataRepository.findAll();
+        final List<SalesAmountInfo> allRecords = List.copyOf(dataRepository.findAll());
         final double average = allRecords.parallelStream()
                 .mapToDouble(SalesAmountInfo::getSalesAmount)
                 .average()

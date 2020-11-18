@@ -13,7 +13,7 @@ public class ScheduledSender {
         this.sender = sender;
     }
 
-    @Scheduled(fixedRate = 70)
+    @Scheduled(fixedRate = 2)
     private void sendMessage() {
         sender.sendTestSalesAmount();
     }
