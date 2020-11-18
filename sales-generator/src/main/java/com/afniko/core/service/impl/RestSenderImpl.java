@@ -23,7 +23,7 @@ public class RestSenderImpl implements RestSender {
 
     @Override
     public void sendTestSalesAmount() {
-        String nameOfParameter = "salesAmount";
+        String nameOfParameter = "sales_amount";
         double randomDouble = generator.getRandom();
         restHandler.doPost(format(URL, nameOfParameter, randomDouble), Void.class);
     }

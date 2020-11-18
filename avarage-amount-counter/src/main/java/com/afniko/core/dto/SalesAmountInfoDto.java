@@ -1,10 +1,15 @@
 package com.afniko.core.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class SalesAmountInfoDto {
 
+    @JsonProperty("sales_amount")
     private Double salesAmount;
+
+    public SalesAmountInfoDto() {
+    }
 
     public Double getSalesAmount() {
         return salesAmount;

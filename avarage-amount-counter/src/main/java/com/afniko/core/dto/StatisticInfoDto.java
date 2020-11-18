@@ -1,11 +1,14 @@
 package com.afniko.core.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class StatisticInfoDto {
 
+    @JsonProperty("total_sales_amount")
     private Double totalSalesAmount;
 
+    @JsonProperty("average_amount_per_order")
     private Double averageAmountPerOrder;
 
     public Double getTotalSalesAmount() {
